@@ -9,14 +9,15 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import javax.servlet.*;
 import javax.servlet.http.*;
+import org.json.simple.JSONObject;
 
 public class TestServlet extends HttpServlet {
     public void doGet(HttpServletRequest request,
                       HttpServletResponse response)
         throws ServletException, IOException {
 
-        PrintWriter out = response.getWriter();
 
+        PrintWriter out = response.getWriter();
 
         try {
             DataSourceProvider dsp = DataSourceProvider.getInstance();
@@ -31,7 +32,10 @@ public class TestServlet extends HttpServlet {
             while (rs.next()) {
                 int count = rs.getInt("total");
 
-                out.println( "# of clients = " + count );
+                JSONObject obj = new JSONObject();
+                obj.put("nbClients", count);
+
+                out.println( obj.toJSONString() );
             }
 
 
