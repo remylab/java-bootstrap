@@ -1,0 +1,6 @@
+
+#1 create the project
+mvn archetype:generate -DgroupId=com.bellmedia -DartifactId=UserApi -DarchetypeArtifactId=maven-archetype-webapp -DinteractiveMode=false
+
+#2 DB
+create database amazoom;
